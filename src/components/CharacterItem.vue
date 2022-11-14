@@ -12,7 +12,7 @@ export default {
         <div class="col text-white text-center">
             <img :src="character.img" alt="">
             <h3>{{ character.name }}</h3>
-            <div>Breaking bad</div>
+            <div>{{ character.category }}</div>
             <p>{{ character.status }}</p>
         </div>
     </div>
