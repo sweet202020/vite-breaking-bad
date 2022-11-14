@@ -1,10 +1,12 @@
 <script >
 import axios from 'axios'
 import SiteHeader from './components/SiteHeader.vue';
+import SiteMain from './components/SiteMain.vue';
 export default {
   name: 'App',
   components: {
     SiteHeader,
+    SiteMain
   },
   data() {
     return {
@@ -38,11 +40,8 @@ export default {
   <main id="site_main">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
-        <div class="card" v-for="character in characters">
-          <div class="col">
-            <img :src="character.img" alt="">
-          </div>
-        </div>
+        <SiteMain v-for="character in characters" :poster="character.img" :name="character.name"
+          :isAlive="character.status" />
       </div>
     </div>
   </main>
@@ -52,9 +51,5 @@ export default {
 </template>
 
 <style scoped>
-img {
-  width: 240px;
-  aspect-ratio: 1/1;
-  object-fit: contain;
-}
+
 </style>
