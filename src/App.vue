@@ -1,15 +1,24 @@
 <script >
+import SiteHeader from './components/SiteHeader.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    SiteHeader,
+  }
 }
 </script>
 
 <template>
-  <h1 class="text-center">it works</h1>
+  <header id="siter_header">
+    <SiteHeader />
+  </header>
+  <!-- /#siter_header -->
+  <main id="site_main"></main>
+  <!-- /#site_main -->
+  <footer id="site_footer"></footer>
+  <!-- /#site_footer -->
 </template>
 
 <style scoped>
-h1 {
-  color: red;
-}
+
 </style>
