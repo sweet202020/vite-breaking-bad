@@ -1,29 +1,29 @@
 <script>
+import CharacterItem from './CharacterItem.vue';
+import { store } from '../store.js'
 export default {
     name: 'CharacterList',
-    props: {
-        characters: Object,
+    components: {
+        CharacterItem
+    },
+    data() {
+        return {
+            store
+        }
     }
 }
 </script>
 
 
 <template>
-
-    <div class="card" v-for="character in characters">
-        <div class="col">
-            <img :src="character.img" alt="">
-            <h3>{{ character.name }}</h3>
-            <p>{{ character.status }}</p>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            <CharacterItem :character="character" v-for="character in store.characters" />
         </div>
     </div>
 </template>
 
 
 <style lang="scss" scoped>
-img {
-    width: 240px;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-}
+
 </style>
