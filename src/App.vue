@@ -1,0 +1,15 @@
+<script >
+export default {
+  name: 'App'
+}
+</script>
+
+<template>
+  <h1 class="text-center">it works</h1>
+</template>
+
+<style scoped>
+h1 {
+  color: red;
+}
+</style>
