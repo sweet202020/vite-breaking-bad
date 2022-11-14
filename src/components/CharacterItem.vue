@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 img {
-    width: 240px;
+    width: 215px;
     aspect-ratio: 1/1;
     object-fit: contain;
     padding-top: 1rem;
