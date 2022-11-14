@@ -1,29 +1,28 @@
 <script>
+import CharacterList from './CharacterList.vue';
 export default {
     name: 'SiteMain',
     props: {
-        poster: String,
-        name: String,
-        isAlive: String,
+        characters: Object,
+    },
+    components: {
+        CharacterList,
+
     }
 }
 </script>
 
 
 <template>
-    <div class="card">
-        <div class="col">
-            <img :src="poster" alt="">
-            <h3>{{ name }}</h3>
-            <p>{{ isAlive }}</p>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+            <CharacterList :characters="characters" />
+
         </div>
     </div>
+
 </template>
 
 <style lang="scss" scoped>
-img {
-    width: 240px;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-}
+
 </style>

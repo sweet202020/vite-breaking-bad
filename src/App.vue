@@ -12,7 +12,6 @@ export default {
     return {
       API_URL: 'https://www.breakingbadapi.com/api/characters',
       characters: null,
-      info: null,
       error: null
     }
   }, methods: {
@@ -21,9 +20,11 @@ export default {
         .then(resp => {
           console.log(resp);
           this.characters = resp.data
-          this.info = resp.data
-          console.log(this.characters);
 
+        })
+        .catch(err => {
+          console.error(err.message);
+          this.error = err.message
         })
     }
   }, mounted() {
@@ -38,12 +39,7 @@ export default {
   </header>
   <!-- /#siter_header -->
   <main id="site_main">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
-        <SiteMain v-for="character in characters" :poster="character.img" :name="character.name"
-          :isAlive="character.status" />
-      </div>
-    </div>
+    <SiteMain :characters="characters" />
   </main>
   <!-- /#site_main -->
   <footer id="site_footer"></footer>
