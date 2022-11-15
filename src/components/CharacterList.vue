@@ -28,6 +28,10 @@ export default {
                     this.store.characters = resp.data
                 })
         }
+    }, computed: {
+        NumberCharacters() {
+            return this.store.characters.length
+        }
     }
 }
 </script>
@@ -38,7 +42,7 @@ export default {
 
         <SelectBox @changeOptions="changeSelect" />
 
-        <h3 v-show="store.characters.length === 62">Ci sono {{ store.characters.length }} personaggi</h3>
+        <h3>Ci sono {{ NumberCharacters }} personaggi</h3>
         <h3 class="loading" v-if="!store.loading">Loading..</h3>
 
 

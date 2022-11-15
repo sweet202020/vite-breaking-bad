@@ -14,6 +14,7 @@ export default {
         <label for="">Choose The Tv-Show Characters</label>
         <select @change="$emit('changeOptions')" v-model="store.selectText" class="form-select form-select-lg" name=""
             id="">
+            <option value="">All Characters</option>
             <option value="Breaking+Bad">Breaking Bad</option>
             <option value="Better+Call+Saul">Better Call Saul</option>
         </select>
