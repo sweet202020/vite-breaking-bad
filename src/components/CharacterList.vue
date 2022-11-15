@@ -1,6 +1,7 @@
 <script>
 import CharacterItem from './CharacterItem.vue';
 import { store } from '../store.js'
+import axios from 'axios';
 export default {
     name: 'CharacterList',
     components: {
@@ -8,7 +9,22 @@ export default {
     },
     data() {
         return {
-            store
+            store,
+            selectText: "Choose the TV-Show Characters"
+        }
+    }, methods: {
+        changeSelect() {
+            /* console.log('ciao');
+            console.log(this.store.selectText); */
+
+            const selectText = this.store.selectText
+            const url = `${this.store.API_URL}?category=${this.store.selectText}`
+            console.log(url);
+            axios.get(url)
+                .then(resp => {
+                    /* console.log(resp); */
+                    this.store.characters = resp.data
+                })
         }
     }
 }
@@ -17,10 +33,27 @@ export default {
 
 <template>
     <div class="container">
+        <div class="mb-3">
+            <label for="">Choose The Tv-Show Characters</label>
+            <select @change="changeSelect()" v-model="store.selectText" class="form-select form-select-lg" name=""
+                id="">
+                <option value="Breaking+Bad">Breaking Bad</option>
+                <option value="Better+Call+Saul">Better Call Saul</option>
+            </select>
+        </div>
+
         <h3 v-show="store.characters.length === 62">Ci sono {{ store.characters.length }} personaggi</h3>
-        <h3 class="loading" v-show="store.characters.length < 62">Loading..</h3>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
-            <CharacterItem :character="character" v-for="character in store.characters" />
+        <h3 class="loading" v-if="!store.loading">Loading..</h3>
+        <div v-else class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+            <!-- <CharacterItem :character="character" v-for="character in store.characters" /> -->
+            <div class="my_card" v-for="character in store.characters">
+                <div class="col text-white text-center">
+                    <img :src="character.img" alt="">
+                    <h3>{{ character.name }}</h3>
+                    <div>{{ character.category }}</div>
+                    <p>{{ character.status }}</p>
+                </div>
+            </div>
 
 
         </div>
@@ -35,5 +68,17 @@ export default {
     font-weight: bold;
     margin-top: 5rem;
 
+}
+
+img {
+    width: 215px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    padding-top: 1rem;
+}
+
+.my_card {
+    background-color: #2E3A46;
+    border: 8px solid white;
 }
 </style>

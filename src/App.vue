@@ -19,6 +19,7 @@ export default {
         .then(resp => {
           console.log(resp);
           this.store.characters = resp.data
+          this.store.loading = true
 
         })
         .catch(err => {
