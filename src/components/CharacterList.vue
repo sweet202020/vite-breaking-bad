@@ -2,15 +2,17 @@
 import CharacterItem from './CharacterItem.vue';
 import { store } from '../store.js'
 import axios from 'axios';
+import SelectBox from "./SelectBox.vue";
 export default {
     name: 'CharacterList',
     components: {
-        CharacterItem
+        CharacterItem,
+        SelectBox
     },
     data() {
         return {
             store,
-            selectText: "Choose the TV-Show Characters"
+            selectText: ""
         }
     }, methods: {
         changeSelect() {
@@ -33,31 +35,21 @@ export default {
 
 <template>
     <div class="container">
-        <div class="mb-3">
-            <label for="">Choose The Tv-Show Characters</label>
-            <select @change="changeSelect()" v-model="store.selectText" class="form-select form-select-lg" name=""
-                id="">
-                <option value="Breaking+Bad">Breaking Bad</option>
-                <option value="Better+Call+Saul">Better Call Saul</option>
-            </select>
-        </div>
+
+        <SelectBox @changeOptions="changeSelect" />
 
         <h3 v-show="store.characters.length === 62">Ci sono {{ store.characters.length }} personaggi</h3>
         <h3 class="loading" v-if="!store.loading">Loading..</h3>
+
+
         <div v-else class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
-            <!-- <CharacterItem :character="character" v-for="character in store.characters" /> -->
-            <div class="my_card" v-for="character in store.characters">
-                <div class="col text-white text-center">
-                    <img :src="character.img" alt="">
-                    <h3>{{ character.name }}</h3>
-                    <div>{{ character.category }}</div>
-                    <p>{{ character.status }}</p>
-                </div>
-            </div>
-
-
+            <CharacterItem :character="character" v-for="character in store.characters" />
         </div>
+
+
     </div>
+
+
 </template>
 
 
@@ -68,17 +60,5 @@ export default {
     font-weight: bold;
     margin-top: 5rem;
 
-}
-
-img {
-    width: 215px;
-    aspect-ratio: 1/1;
-    object-fit: contain;
-    padding-top: 1rem;
-}
-
-.my_card {
-    background-color: #2E3A46;
-    border: 8px solid white;
 }
 </style>
