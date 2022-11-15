@@ -11,11 +11,17 @@ export default {
 </script>
 <template>
     <div class="mb-3">
-        <label for="">Choose The Tv-Show Characters</label>
-        <select @change="$emit('changeOptions')" v-model="store.selectText" class="form-select form-select-lg" id="">
+        <select @change="$emit('changeOptions')" v-model="store.selectText" class=" form-select-lg" id="">
             <option value="">All Characters</option>
             <option value="Breaking+Bad">Breaking Bad</option>
             <option value="Better+Call+Saul">Better Call Saul</option>
         </select>
     </div>
 </template>
+
+<style lang="scss" scoped>
+select {
+    width: 300px;
+    margin-top: 1rem;
+}
+</style>
