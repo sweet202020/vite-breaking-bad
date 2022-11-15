@@ -38,7 +38,7 @@ export default {
 
 
 <template>
-    <div class="container">
+    <div class="container ">
 
         <SelectBox @changeOptions="changeSelect" />
 
@@ -62,7 +62,12 @@ export default {
     text-align: center;
     font-size: 5rem;
     font-weight: bold;
-    margin-top: 5rem;
+    margin: 5rem 0;
 
+
+}
+
+.container {
+    background-color: white;
 }
 </style>
