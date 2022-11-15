@@ -20,7 +20,7 @@ export default {
             console.log(this.store.selectText); */
 
             const selectText = this.store.selectText
-            const url = `${this.store.API_URL}?category=${this.store.selectText}`
+            const url = `${this.store.API_URL}?category=${selectText}`
             console.log(url);
             axios.get(url)
                 .then(resp => {
